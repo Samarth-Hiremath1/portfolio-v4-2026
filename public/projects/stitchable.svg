@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#180d05"/>
+      <stop offset="0.55" stop-color="#0a0807"/>
+      <stop offset="1" stop-color="#2a1204"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.75" cy="0.3" r="0.55">
+      <stop offset="0" stop-color="#ff8e3c" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#ff8e3c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <rect width="1200" height="900" fill="url(#glow)"/>
+  <text x="80" y="180" fill="#ff8e3c" font-family="monospace" font-size="30" letter-spacing="10">06_</text>
+  <text x="80" y="480" fill="#f5f2ec" fill-opacity="0.85" font-family="monospace" font-size="50" letter-spacing="8">STITCHABLE</text>
+  <text x="80" y="540" fill="#8f8a80" font-family="monospace" font-size="24">PLACEHOLDER — replace with a real screenshot</text>
+  <text x="80" y="580" fill="#57534a" font-family="monospace" font-size="20">/public/projects/stitchable.svg</text>
+</svg>

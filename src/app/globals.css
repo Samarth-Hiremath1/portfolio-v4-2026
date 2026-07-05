@@ -1,0 +1,276 @@
+@import "tailwindcss";
+
+@theme {
+  /* Base — true black void, warm-tinted darks for section depth */
+  --color-void: #030304;
+  --color-void-2: #0a0807;
+  --color-void-3: #120b07;
+
+  /* Text */
+  --color-ink: #f5f2ec;
+  --color-muted: #8f8a80;
+
+  /* The temperature ramp — heat, not hue. Used as gradients. */
+  --color-furnace: #c2410c; /* deep burnt orange — outer disk */
+  --color-horizon: #ff8e3c; /* accretion orange — primary accent */
+  --color-ember: #f0b269; /* warm mid — hovers, soft highlights */
+  --color-whitehot: #ffe9c9; /* inner-edge white — rare, peak moments */
+
+  --font-sans: "General Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Archivo", "General Sans", ui-sans-serif, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+html {
+  background: var(--color-void);
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(255, 142, 60, 0.9);
+  color: #030304;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: #241a12;
+  border-radius: 8px;
+  border: 2px solid var(--color-void);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a2a1c;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-horizon);
+  outline-offset: 3px;
+}
+
+/* ---------- Type roles ---------- */
+/* Heavy expanded grotesk — the site's voice at scale */
+.display-head {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-stretch: 118%;
+  text-transform: uppercase;
+  letter-spacing: -0.015em;
+  line-height: 0.92;
+}
+
+/* Mono metadata layer — labels, coordinates, tags */
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--color-muted);
+}
+
+/* ---------- Glow card: shared hover treatment ---------- */
+.glow-card {
+  position: relative;
+  border: 1px solid rgba(143, 138, 128, 0.14);
+  border-radius: 1rem;
+  background: linear-gradient(
+    160deg,
+    rgba(194, 65, 12, 0.07),
+    rgba(10, 8, 7, 0.6) 45%
+  );
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.45s ease,
+    box-shadow 0.45s ease;
+  will-change: transform;
+}
+.glow-card::before {
+  /* cursor-tracking spotlight — driven by --mx / --my set in JS */
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 142, 60, 0.09),
+    transparent 55%
+  );
+}
+.glow-card:hover,
+.glow-card:focus-within {
+  transform: translateY(-4px) scale(1.012);
+  border-color: rgba(255, 142, 60, 0.4);
+  box-shadow:
+    0 8px 44px -12px rgba(194, 65, 12, 0.35),
+    0 0 0 1px rgba(255, 142, 60, 0.08);
+}
+.glow-card:hover::before,
+.glow-card:focus-within::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-card,
+  .glow-card::before {
+    transition: none;
+  }
+  .glow-card:hover {
+    transform: none;
+  }
+}
+
+/* ---------- Hero scroll cue ---------- */
+@keyframes scroll-cue {
+  0% {
+    transform: scaleY(0);
+    transform-origin: top;
+  }
+  45% {
+    transform: scaleY(1);
+    transform-origin: top;
+  }
+  55% {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  100% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+.scroll-cue-line {
+  animation: scroll-cue 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(255, 142, 60, 0.5);
+  }
+  50% {
+    opacity: 0.6;
+    box-shadow: 0 0 0 5px rgba(255, 142, 60, 0);
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue-line,
+  .pulse-dot {
+    animation: none;
+  }
+}
+
+/* ---------- Comet (experience scroll indicator) ---------- */
+.comet {
+  background: radial-gradient(circle, #ffe9c9 0%, var(--color-horizon) 45%, transparent 72%);
+  box-shadow:
+    0 0 14px 4px rgba(255, 142, 60, 0.55),
+    0 0 44px 10px rgba(194, 65, 12, 0.35);
+}
+.comet::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  width: 2px;
+  height: 56px;
+  transform: translateX(-50%);
+  background: linear-gradient(to top, rgba(255, 142, 60, 0.6), rgba(194, 65, 12, 0.25), transparent);
+  filter: blur(1px);
+}
+
+/* ---------- Experience waypoints ---------- */
+.waypoint .waypoint-node {
+  background: #33261a;
+  box-shadow: none;
+  transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+.waypoint .waypoint-card {
+  opacity: 0.25;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.waypoint.is-lit .waypoint-node {
+  background: var(--color-horizon);
+  box-shadow:
+    0 0 10px 2px rgba(255, 142, 60, 0.6),
+    0 0 30px 6px rgba(194, 65, 12, 0.3);
+}
+.waypoint.is-lit .waypoint-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .waypoint .waypoint-card {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Marquee band ---------- */
+@keyframes marquee {
+  to {
+    transform: translateX(-100%);
+  }
+}
+.marquee-track {
+  animation: marquee 26s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
+}
+
+/* ---------- Projects track: horizontal only when JS enables it ---------- */
+.proj-track {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+.proj-track.is-horizontal {
+  flex-direction: row;
+  gap: 0;
+  width: max-content;
+}
+
+/* ---------- About badge swap (traveling badge -> crisp resident card) ---------- */
+#about-badge-slot .slot-card {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+@media (min-width: 1024px) {
+  #about-badge-slot .slot-card {
+    opacity: 0;
+  }
+  .badge-swapped #about-badge-slot .slot-card {
+    opacity: 1;
+  }
+  .badge-swapped #hero-badge {
+    opacity: 0 !important;
+  }
+  #hero-badge {
+    transition: opacity 0.25s ease;
+  }
+}

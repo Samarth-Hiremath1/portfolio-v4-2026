@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#180d05"/>
+      <stop offset="0.55" stop-color="#0a0807"/>
+      <stop offset="1" stop-color="#2a1204"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <text x="80" y="180" fill="#ff8e3c" font-family="monospace" font-size="30" letter-spacing="10">07_</text>
+  <text x="80" y="480" fill="#f5f2ec" fill-opacity="0.85" font-family="monospace" font-size="50" letter-spacing="8">QUANTFOLIO</text>
+  <text x="80" y="540" fill="#8f8a80" font-family="monospace" font-size="24">PLACEHOLDER — replace with a real screenshot</text>
+</svg>
