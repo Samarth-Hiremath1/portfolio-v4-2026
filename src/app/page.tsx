@@ -3,6 +3,7 @@ import Nav from "@/components/Nav";
 import GrainOverlay from "@/components/GrainOverlay";
 import CursorTrail from "@/components/CursorTrail";
 import CornerHUD from "@/components/CornerHUD";
+import CosmicSurfer from "@/components/three/CosmicSurfer";
 import Hero from "@/components/hero/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
@@ -19,6 +20,7 @@ export default function Home() {
       <GrainOverlay />
       <CursorTrail />
       <CornerHUD />
+      <CosmicSurfer />
       <main>
         <Hero />
         <About />

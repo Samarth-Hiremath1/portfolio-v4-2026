@@ -1,5 +1,6 @@
 import Magnetic from "@/components/Magnetic";
 import ScrambleLabel from "@/components/ScrambleLabel";
+import GuitarEgg from "@/components/GuitarEgg";
 import ContactRing from "@/components/three/ContactRing";
 import { site } from "@/lib/content";
 
@@ -44,12 +45,15 @@ export default function Contact() {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-white/10 px-5 py-2 text-sm text-muted transition-colors hover:border-horizon/50 hover:text-horizon"
+                className="rounded-full border border-white/10 px-7 py-3 text-[15px] text-muted transition-colors hover:border-horizon/50 hover:text-horizon"
               >
                 {social.label}
               </a>
             </Magnetic>
           ))}
+          <Magnetic strength={0.3}>
+            <GuitarEgg />
+          </Magnetic>
         </div>
       </div>
 

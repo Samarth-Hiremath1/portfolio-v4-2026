@@ -75,6 +75,9 @@ export default function ContactRing() {
       camera={{ position: [0, 0.4, 5.4], fov: 45 }}
       gl={{ antialias: true, powerPreference: "high-performance" }}
       frameloop={reduced ? "demand" : "always"}
+      // decorative: R3F force-sets pointer-events:auto on its wrapper,
+      // which would swallow clicks on the email/socials beneath — undo it
+      style={{ pointerEvents: "none" }}
     >
       <ExposeState />
       <Ring reduced={reduced} />

@@ -28,14 +28,17 @@ export default function ScrambleLabel({
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       gsap.to(el, {
-        duration: 1.2,
+        duration: 1.5,
         scrambleText: {
           text,
           chars: "01#_/<>",
-          speed: 0.5,
+          speed: 0.55,
+          revealDelay: 0.35,
         },
         ease: "none",
-        scrollTrigger: { trigger: el, start: "top 88%" },
+        // fire a little later so the decode is happening while the label
+        // is comfortably in view, not already finished on entry
+        scrollTrigger: { trigger: el, start: "top 80%" },
       });
     });
 

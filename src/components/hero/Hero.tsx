@@ -141,7 +141,7 @@ export default function Hero() {
         </div>
 
         {/* parenthetical tagline, nudot-style */}
-        <p className="hero-fade absolute bottom-16 left-1/2 z-10 w-full -translate-x-1/2 px-4 text-center font-mono text-[10px] uppercase tracking-[0.32em] text-muted md:bottom-[8%] md:text-[11px]">
+        <p className="hero-fade absolute bottom-16 left-1/2 z-10 w-full -translate-x-1/2 px-4 text-center font-mono text-[12px] uppercase tracking-[0.32em] text-muted md:bottom-[8%] md:text-[13px]">
           {site.heroTagline}
         </p>
 

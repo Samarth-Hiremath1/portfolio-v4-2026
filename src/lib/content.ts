@@ -101,7 +101,8 @@ export type Project = {
   name: string;
   description: string;
   tags: string[];
-  image: string; // path in /public — swap placeholders for real screenshots
+  image: string; // main image — .png files fall back to their .svg placeholder twin
+  images?: string[]; // optional multi-shot collage (first = hero shot)
   github?: string; // only rendered if provided
   demo?: string; // only rendered if provided
   status?: string;
@@ -114,7 +115,12 @@ export const featuredProjects: Project[] = [
     description:
       "GPT-2 built from scratch with a custom fused-softmax CUDA kernel, 78% DDP scaling efficiency across 4 processes, and 6× faster inference at 2048 tokens via KV caching + INT8 quantization.",
     tags: ["PyTorch", "CUDA", "JAX / XLA", "DDP", "FastAPI"],
-    image: "/projects/transformer-lab.svg",
+    image: "/projects/transformer-lab.svg", // carousel fallback
+    images: [
+      "/projects/transformer-lab-1.png",
+      "/projects/transformer-lab-2.png",
+      "/projects/transformer-lab-3.png",
+    ],
     github: "https://github.com/Samarth-Hiremath1/Distributed-Transformer-Lab",
   },
   {
@@ -123,7 +129,11 @@ export const featuredProjects: Project[] = [
     description:
       "Five Claude agents in parallel fan-out/fan-in orchestration (LangGraph + MCP), with an LLM-as-judge eval harness that catches the silent failures pass/fail tests miss. Built at Cerebral Valley × Sandhill for Rosewood Hotels.",
     tags: ["Claude", "LangGraph", "MCP", "Evals"],
-    image: "/projects/living-memory.svg",
+    image: "/projects/living-memory.svg", // carousel fallback
+    images: [
+      "/projects/living-memory-1.png",
+      "/projects/living-memory-2.png",
+    ],
     github: "https://github.com/Samarth-Hiremath1/Living-Memory",
   },
   {
@@ -132,7 +142,12 @@ export const featuredProjects: Project[] = [
     description:
       "Multi-agent career platform with LangGraph orchestration and RAG pipelines — 50% faster responses via Redis caching, deployed on Docker + Kubernetes with CI/CD and autoscaling.",
     tags: ["LangGraph", "RAG", "Kubernetes", "PostgreSQL"],
-    image: "/projects/trajectory.svg",
+    image: "/projects/trajectory.svg", // collage fallback
+    images: [
+      "/projects/trajectory-1.png",
+      "/projects/trajectory-2.png",
+      "/projects/trajectory-3.png",
+    ],
     github: "https://github.com/Samarth-Hiremath1/Trajectory.ai",
   },
   {
@@ -141,8 +156,18 @@ export const featuredProjects: Project[] = [
     description:
       "Multimodal ML pipeline (PyTorch, TensorFlow, MediaPipe) that analyzes speech and body language for clarity, confidence, and posture — on a Dockerized, Airflow-orchestrated stack with automated retraining.",
     tags: ["PyTorch", "TensorFlow", "MediaPipe", "Airflow"],
-    image: "/projects/vq.svg",
+    image: "/projects/vq.png",
     // github: "[PLACEHOLDER — repo URL]",
+  },
+  {
+    slug: "blackjack-ai",
+    name: "Blackjack AI",
+    description:
+      "A Q-learning agent that masters blackjack strategy through simulation and reward-based training — applied RL meets game theory. Built for the Google Developer Student Club at UC Davis.",
+    tags: ["Python", "Q-Learning", "Reinforcement Learning", "Probability"],
+    image: "/projects/blackjack.png",
+    github: "https://github.com/hanyiliu/SamarthBlackjackBot",
+    demo: "https://docs.google.com/presentation/d/1GdYHb8CVW-bAWbQH8Qt3tYmktVt_v_BQjTn2lCsTA6Y/edit?usp=sharing",
   },
 ];
 
@@ -181,7 +206,8 @@ export type LeadershipCard = {
   role: string;
   dates: string;
   description: string;
-  image: string; // path in /public/leadership — swap for real photos
+  image: string; // the big photo in the description row — swap in /public/leadership
+  beltImage?: string; // separate image for the motion belt (falls back to `image`)
   stats: { value: string; label: string }[];
 };
 
@@ -192,7 +218,8 @@ export const leadership: LeadershipCard[] = [
     dates: "2025 — PRESENT",
     description:
       "Leading a 9-person engineering, design, and marketing team building a student rideshare platform — turning product requirements into technical specs and shipping weekly.",
-    image: "/leadership/aggieworks.svg",
+    image: "/leadership/aggieworks.png",
+    beltImage: "/leadership/aggieworks-belt.svg",
     stats: [
       { value: "1,500+", label: "WEEKLY_ACTIVES" },
       { value: "257%", label: "DAU_GROWTH" },
@@ -205,7 +232,8 @@ export const leadership: LeadershipCard[] = [
     dates: "2022 — 2023",
     description:
       "Organized statewide events for 54,000 members — including a 3,500-person State Leadership & Skills Conference — advocated for career education in Washington D.C., and initiated the President's Council to connect schools across the state.",
-    image: "/leadership/skillsusa.svg",
+    image: "/leadership/skillsusa.png",
+    beltImage: "/leadership/skillsusa-belt.svg",
     stats: [
       { value: "54,000", label: "MEMBERS_SERVED" },
       { value: "3,500", label: "CONF_ATTENDEES" },
@@ -218,7 +246,8 @@ export const leadership: LeadershipCard[] = [
     dates: "2020 — 2022",
     description:
       "Founded a summer programming bootcamp with the local library and taught middle schoolers to code across three summers — the first thing I ever took from zero to one.",
-    image: "/leadership/bootcamp.svg",
+    image: "/leadership/bootcamp.png",
+    beltImage: "/leadership/bootcamp-belt.svg",
     stats: [
       { value: "120+", label: "STUDENTS_TAUGHT" },
       { value: "3", label: "SUMMERS" },

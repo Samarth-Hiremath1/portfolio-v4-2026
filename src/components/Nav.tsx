@@ -32,7 +32,7 @@ export default function Nav() {
   }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-[100]">
       <nav className="flex items-center justify-between px-6 py-5 md:px-10">
         <Magnetic>
           <button
@@ -48,7 +48,7 @@ export default function Nav() {
             <Magnetic key={link.id} strength={0.25}>
               <button
                 onClick={() => scrollToSection(`#${link.id}`)}
-                className={`rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors duration-300 md:px-4 md:text-[11px] ${
+                className={`rounded-full px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] transition-colors duration-300 md:px-4 md:text-[13px] ${
                   active === link.id
                     ? "text-horizon"
                     : "text-muted hover:text-ink"

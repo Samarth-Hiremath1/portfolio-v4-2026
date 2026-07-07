@@ -115,7 +115,7 @@ export default function Leadership() {
       >
         {mounted && (
           <LeadershipBelt
-            images={leadership.map((l) => l.image)}
+            images={leadership.map((l) => l.beltImage ?? l.image)}
             progress={progress}
             pointer={pointer}
             reduced={reduced}
@@ -139,16 +139,23 @@ export default function Leadership() {
                   alt={`${item.org} — ${item.role}`}
                   className="aspect-[16/10] w-full object-cover"
                   loading="lazy"
+                  onError={(e) => {
+                    // real photos may be .png/.jpg/.jpeg/.webp; fall back to the .svg placeholder
+                    const img = e.currentTarget;
+                    if (img.dataset.fb) return;
+                    img.dataset.fb = "1";
+                    img.src = item.image.replace(/\.(png|jpe?g|webp)$/i, ".svg");
+                  }}
                 />
               </GlowCard>
 
               <div className="relative">
-                <span className="dock-label absolute right-0 top-1 font-mono text-[9px] uppercase tracking-[0.3em] text-horizon opacity-0 transition-opacity duration-700 group-[.docked]:opacity-80">
+                <span className="dock-label absolute right-0 top-1 font-mono text-[11px] uppercase tracking-[0.3em] text-horizon opacity-0 transition-opacity duration-700 group-[.docked]:opacity-80">
                   ● Docked
                 </span>
                 <ScrambleLabel
                   text={item.dates.replace(/\s/g, "")}
-                  className="font-mono text-[10px] uppercase tracking-[0.25em] text-horizon/90"
+                  className="font-mono text-[12px] uppercase tracking-[0.25em] text-horizon/90"
                 />
                 <h3 className="display-head mt-4 text-2xl md:text-3xl">
                   {item.org}
@@ -167,7 +174,7 @@ export default function Leadership() {
                       <p className="display-head text-2xl text-ink md:text-3xl">
                         {stat.value}
                       </p>
-                      <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.25em] text-muted">
+                      <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.25em] text-muted">
                         {stat.label}
                       </p>
                     </div>

@@ -7,13 +7,13 @@ import { useEffect, useRef } from "react";
  * screen-blended over the whole site (same recipe nudot uses).
  * Desktop-only; respects reduced motion.
  *
- * The grain "yields" to dense-content sections: while the viewport
- * center is inside one of CALM_SECTIONS it eases down to a whisper
- * so cards and text read crisp, then swells back between sections.
+ * Sits at z-60: above section backgrounds (so grain is visible
+ * everywhere), but below the nav/HUD and below the "lifted" content
+ * layers (z-70) in the Experience and Projects sections — so cards
+ * and images there read crisp while grain still textures the space
+ * around them.
  */
 const OPACITY = 0.05;
-const CALM_OPACITY = 0.016;
-const CALM_SECTIONS = ["experience", "projects"];
 const FRAMES = 8;
 const FPS = 24;
 
@@ -32,19 +32,6 @@ export default function GrainOverlay() {
     let last = 0;
     let frameIdx = 0;
     let frames: HTMLCanvasElement[] = [];
-    let currentOpacity = OPACITY;
-    let targetOpacity = OPACITY;
-
-    const updateTarget = () => {
-      const mid = window.innerHeight * 0.5;
-      const calm = CALM_SECTIONS.some((id) => {
-        const el = document.getElementById(id);
-        if (!el) return false;
-        const r = el.getBoundingClientRect();
-        return r.top < mid && r.bottom > mid;
-      });
-      targetOpacity = calm ? CALM_OPACITY : OPACITY;
-    };
 
     const bake = () => {
       // half-resolution grain, scaled up — cheaper and softer
@@ -71,8 +58,6 @@ export default function GrainOverlay() {
 
     const loop = (t: number) => {
       raf = requestAnimationFrame(loop);
-      currentOpacity += (targetOpacity - currentOpacity) * 0.06;
-      canvas.style.opacity = currentOpacity.toFixed(3);
       if (t - last < 1000 / FPS) return;
       last = t;
       frameIdx = (frameIdx + 1) % FRAMES;
@@ -80,8 +65,6 @@ export default function GrainOverlay() {
     };
 
     bake();
-    updateTarget();
-    window.addEventListener("scroll", updateTarget, { passive: true });
     raf = requestAnimationFrame(loop);
 
     let resizeTimer = 0;
@@ -95,7 +78,6 @@ export default function GrainOverlay() {
       cancelAnimationFrame(raf);
       window.clearTimeout(resizeTimer);
       window.removeEventListener("resize", onResize);
-      window.removeEventListener("scroll", updateTarget);
     };
   }, []);
 
@@ -103,7 +85,7 @@ export default function GrainOverlay() {
     <canvas
       ref={canvasRef}
       aria-hidden
-      className="pointer-events-none fixed inset-0 z-[90] hidden h-screen w-screen mix-blend-screen md:block"
+      className="pointer-events-none fixed inset-0 z-[60] hidden h-screen w-screen mix-blend-screen md:block"
       style={{ opacity: OPACITY }}
     />
   );

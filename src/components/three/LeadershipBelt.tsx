@@ -108,6 +108,7 @@ export default function LeadershipBelt({
       camera={{ position: [0, 0, 4.4], fov: 45 }}
       gl={{ antialias: true, powerPreference: "high-performance" }}
       frameloop={reduced ? "demand" : "always"}
+      style={{ pointerEvents: "none" }}
     >
       <ExposeState />
       <Suspense fallback={null}>

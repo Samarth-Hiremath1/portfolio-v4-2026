@@ -76,7 +76,7 @@ export default function Experience() {
       <div className="pointer-events-none absolute -right-52 top-10 h-[520px] w-[520px] rounded-full bg-furnace/[0.08] blur-[150px]" />
 
       <div className="mx-auto max-w-5xl">
-        <SectionHeader eyebrow="TRAJECTORY" title="Flight log" />
+        <SectionHeader eyebrow="TRAJECTORY" title="Professional Experience" />
 
         <div className="relative mt-20">
           {/* the beam */}
@@ -105,7 +105,7 @@ export default function Experience() {
                       <h3 className="text-xl font-semibold md:text-2xl">
                         {job.company}
                       </h3>
-                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-horizon/90">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-horizon/90">
                         {job.dates}
                       </span>
                     </div>

@@ -1,13 +1,98 @@
 "use client";
 
 /* eslint-disable @next/next/no-img-element */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "@/lib/gsap";
 import Magnetic from "@/components/Magnetic";
 import GlowCard from "@/components/GlowCard";
 import SectionHeader from "@/components/SectionHeader";
 import ScrambleLabel from "@/components/ScrambleLabel";
 import { featuredProjects, archiveProjects, type Project } from "@/lib/content";
+
+/**
+ * Screenshot img with graceful degradation: real assets are .png; if one
+ * isn't uploaded yet, fall back to the project's .svg placeholder.
+ */
+function Shot({
+  src,
+  fallback,
+  alt,
+  className,
+}: {
+  src: string;
+  fallback: string;
+  alt: string;
+  className: string;
+}) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={className}
+      loading="lazy"
+      onError={(e) => {
+        const img = e.currentTarget;
+        if (img.dataset.fb) return;
+        img.dataset.fb = "1";
+        img.src = fallback;
+      }}
+    />
+  );
+}
+
+// works for .png, .jpg/.jpeg, .webp — whatever real asset extension is used
+const svgTwin = (src: string) => src.replace(/\.(png|jpe?g|webp)$/i, ".svg");
+
+/**
+ * Click-through image carousel for multi-shot projects: one big image,
+ * < > arrows, and a mono counter. Every shot renders full size.
+ */
+function Carousel({
+  images,
+  fallback,
+  name,
+}: {
+  images: string[];
+  fallback: string;
+  name: string;
+}) {
+  const [index, setIndex] = useState(0);
+  const count = images.length;
+  const go = (delta: number) =>
+    setIndex((prev) => (prev + delta + count) % count);
+
+  return (
+    <div className="group/carousel relative">
+      {/* key remounts the img so the fallback state resets per slide */}
+      <Shot
+        key={images[index]}
+        src={images[index]}
+        fallback={fallback}
+        alt={`${name} — screenshot ${index + 1} of ${count}`}
+        className="aspect-[4/3] w-full object-cover"
+      />
+
+      <button
+        onClick={() => go(-1)}
+        aria-label="Previous screenshot"
+        className="absolute left-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-void/70 font-mono text-base text-ink/80 backdrop-blur-sm transition-colors hover:border-horizon/60 hover:text-horizon"
+      >
+        {"<"}
+      </button>
+      <button
+        onClick={() => go(1)}
+        aria-label="Next screenshot"
+        className="absolute right-3 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-void/70 font-mono text-base text-ink/80 backdrop-blur-sm transition-colors hover:border-horizon/60 hover:text-horizon"
+      >
+        {">"}
+      </button>
+
+      <span className="absolute bottom-3 right-4 rounded-full bg-void/70 px-3 py-1 font-mono text-[11px] tracking-[0.25em] text-ink/80 backdrop-blur-sm">
+        {index + 1}_/_{count}
+      </span>
+    </div>
+  );
+}
 
 function ProjectLinks({ project }: { project: Project }) {
   if (!project.github && !project.demo) return null;
@@ -33,7 +118,7 @@ function ProjectLinks({ project }: { project: Project }) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full bg-horizon px-5 py-2.5 text-sm font-medium text-void transition-opacity hover:opacity-85"
           >
-            Live demo <span aria-hidden>↗</span>
+            Demo <span aria-hidden>↗</span>
           </a>
         </Magnetic>
       )}
@@ -102,7 +187,10 @@ export default function Projects() {
 
   return (
     <section id="projects" className="relative bg-void">
-      <div ref={pinRef} className="relative overflow-hidden">
+      {/* z-70: panels/images ride above the film grain (z-60), while the
+          section's void background stays below it so grain still textures
+          the space around the content */}
+      <div ref={pinRef} className="relative z-[70] overflow-hidden">
         <div ref={trackRef} className="proj-track px-6 pt-32 pb-8 md:px-10 lg:py-0">
           {/* intro panel — rides inside the horizontal scroll, trionn-style */}
           <div className="proj-panel flex items-center lg:h-screen lg:w-[42vw] lg:shrink-0 lg:pl-[4vw] lg:pr-[6vw]">
@@ -111,7 +199,7 @@ export default function Projects() {
               <p className="mt-8 max-w-sm text-sm leading-relaxed text-muted">
                 Four systems, built end to end — kernel to cluster to product.
               </p>
-              <p className="mt-10 hidden font-mono text-[10px] uppercase tracking-[0.32em] text-horizon/70 lg:block">
+              <p className="mt-10 hidden font-mono text-[11px] uppercase tracking-[0.32em] text-horizon/70 lg:block">
                 （ SCROLL → ）
               </p>
             </div>
@@ -124,7 +212,7 @@ export default function Projects() {
             >
               <div className="grid w-full items-center gap-10 lg:grid-cols-2 lg:gap-16">
                 <div>
-                  <p className="font-mono text-[10px] tracking-[0.3em] text-horizon/80">
+                  <p className="font-mono text-[12px] tracking-[0.3em] text-horizon/80">
                     {String(i + 1).padStart(2, "0")}_
                     {String(featuredProjects.length).padStart(2, "0")}
                   </p>
@@ -138,7 +226,7 @@ export default function Projects() {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-white/10 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-muted"
+                        className="rounded-full border border-white/10 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-muted"
                       >
                         {tag}
                       </span>
@@ -147,13 +235,20 @@ export default function Projects() {
                   <ProjectLinks project={project} />
                 </div>
                 <GlowCard className="overflow-hidden">
-                  {/* PLACEHOLDER image — drop a real screenshot in /public/projects */}
-                  <img
-                    src={project.image}
-                    alt={`${project.name} preview`}
-                    className="aspect-[4/3] w-full object-cover"
-                    loading="lazy"
-                  />
+                  {project.images && project.images.length > 1 ? (
+                    <Carousel
+                      images={project.images}
+                      fallback={project.image}
+                      name={project.name}
+                    />
+                  ) : (
+                    <Shot
+                      src={project.images?.[0] ?? project.image}
+                      fallback={svgTwin(project.images?.[0] ?? project.image)}
+                      alt={`${project.name} preview`}
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                  )}
                 </GlowCard>
               </div>
             </article>
@@ -161,8 +256,8 @@ export default function Projects() {
         </div>
       </div>
 
-      {/* archive — the quieter shelf */}
-      <div className="px-6 pb-32 pt-10 md:px-10 lg:pb-44 lg:pt-24">
+      {/* archive — the quieter shelf. z-70 keeps text crisp over the grain */}
+      <div className="relative z-[70] px-6 pb-32 pt-10 md:px-10 lg:pb-44 lg:pt-24">
         <div className="mx-auto max-w-6xl">
           <ScrambleLabel text="MORE_EXPERIMENTS" />
           <div className="mt-8 border-t border-white/5">
@@ -185,12 +280,12 @@ export default function Projects() {
                       {project.name}
                     </h3>
                     {project.status && (
-                      <span className="whitespace-nowrap rounded-full border border-horizon/40 px-3 py-0.5 font-mono text-[9px] uppercase tracking-[0.2em] text-horizon">
+                      <span className="whitespace-nowrap rounded-full border border-horizon/40 px-3 py-0.5 font-mono text-[11px] uppercase tracking-[0.2em] text-horizon">
                         {project.status}
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-muted md:text-right">
+                  <p className="text-[15px] leading-relaxed text-muted md:ml-auto md:max-w-[360px] md:text-right">
                     {project.description}
                   </p>
                   <span

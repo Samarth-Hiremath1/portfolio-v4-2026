@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import IdBadge from "@/components/IdBadge";
 import ScrambleLabel from "@/components/ScrambleLabel";
+import StrawHat, { ScarMark } from "@/components/StrawHat";
 import { about } from "@/lib/content";
 
 export default function About() {
@@ -126,7 +127,14 @@ export default function About() {
             <span className="h-px w-24 bg-white/10" />
           </div>
           <h2 className="about-reveal display-head mt-6 text-3xl md:text-4xl lg:text-5xl">
-            The systems layer of&nbsp;intelligence
+            About&nbsp;M
+            <span className="relative inline-block">
+              e
+              {/* the hat hangs off the E, tilted right — if you know, you know */}
+              <StrawHat className="absolute -top-[0.58em] left-[0.02em] w-[1.3em] rotate-[11deg]" />
+              {/* and the scar, carved across the E's middle bar */}
+              <ScarMark className="absolute left-[62%] top-[52%] w-[0.37em] -translate-x-1/2 -translate-y-1/2 rotate-[-3deg]" />
+            </span>
           </h2>
           <p className="about-reveal mt-8 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
             {about.paragraphs[0]}

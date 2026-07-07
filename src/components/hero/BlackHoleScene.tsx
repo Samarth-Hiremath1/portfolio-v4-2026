@@ -248,6 +248,9 @@ export default function BlackHoleScene({
       gl={{ antialias: true, powerPreference: "high-performance" }}
       frameloop={reduced ? "demand" : "always"}
       onCreated={() => onReady?.()}
+      // pointer tracking uses window listeners; the canvas itself must
+      // never intercept events (R3F force-sets pointer-events:auto)
+      style={{ pointerEvents: "none" }}
     >
       <ExposeState />
       <color attach="background" args={["#030304"]} />
