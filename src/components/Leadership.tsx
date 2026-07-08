@@ -154,12 +154,12 @@ export default function Leadership() {
               </GlowCard>
 
               <div className="relative">
-                <span className="dock-label absolute right-0 top-1 font-mono text-[11px] uppercase tracking-[0.3em] text-horizon opacity-0 transition-opacity duration-700 group-[.docked]:opacity-80">
+                <span className="dock-label absolute right-0 top-1 font-mono text-[14px] uppercase tracking-[0.3em] text-horizon opacity-0 transition-opacity duration-700 group-[.docked]:opacity-80">
                   ● Docked
                 </span>
                 <ScrambleLabel
                   text={item.dates.replace(/\s/g, "")}
-                  className="font-mono text-[12px] uppercase tracking-[0.25em] text-horizon/90"
+                  className="font-mono text-[15px] uppercase tracking-[0.25em] text-horizon/90"
                 />
                 <h3 className="display-head mt-4 text-2xl md:text-3xl">
                   {item.org}
@@ -167,7 +167,7 @@ export default function Leadership() {
                 <p className="mt-2 text-sm font-medium text-ink/80 md:text-base">
                   {item.role}
                 </p>
-                <p className="mt-5 max-w-lg text-sm leading-relaxed text-muted md:text-[15px]">
+                <p className="mt-5 max-w-lg text-sm leading-relaxed text-ink/90 md:text-[15px]">
                   {item.description}
                 </p>
 
@@ -178,7 +178,7 @@ export default function Leadership() {
                       <p className="display-head text-2xl text-ink md:text-3xl">
                         {stat.value}
                       </p>
-                      <p className="mt-1 font-mono text-[11px] uppercase tracking-[0.25em] text-muted">
+                      <p className="mt-1 font-mono text-[14px] uppercase tracking-[0.25em] text-muted">
                         {stat.label}
                       </p>
                     </div>

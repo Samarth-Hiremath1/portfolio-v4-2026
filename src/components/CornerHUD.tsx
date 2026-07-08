@@ -22,18 +22,18 @@ export default function CornerHUD() {
   return (
     <>
       <div className="pointer-events-none fixed bottom-5 left-6 z-[96] hidden flex-col gap-1 lg:flex">
-        <span className="font-mono text-[11px] tracking-[0.22em] text-muted/70">
+        <span className="font-mono text-[14px] tracking-[0.22em] text-muted/70">
           37.7749_N / 122.4194_W
         </span>
-        <span className="font-mono text-[11px] tracking-[0.22em] text-muted/40">
+        <span className="font-mono text-[14px] tracking-[0.22em] text-muted/40">
           SAN_FRANCISCO_BAY_AREA
         </span>
       </div>
       <div className="pointer-events-none fixed bottom-5 right-6 z-[96] hidden flex-col items-end gap-1 lg:flex">
-        <span className="font-mono text-[11px] tracking-[0.22em] text-horizon/70">
+        <span className="font-mono text-[14px] tracking-[0.22em] text-horizon/70">
           SCROLL_{String(pct).padStart(3, "0")}%
         </span>
-        <span className="font-mono text-[11px] tracking-[0.22em] text-muted/40">
+        <span className="font-mono text-[14px] tracking-[0.22em] text-muted/40">
           PORTFOLIO_V4 / 2026
         </span>
       </div>

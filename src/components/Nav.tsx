@@ -8,6 +8,7 @@ const LINKS = [
   { id: "about", label: "About" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
+  { id: "leadership", label: "Leadership" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -48,7 +49,7 @@ export default function Nav() {
             <Magnetic key={link.id} strength={0.25}>
               <button
                 onClick={() => scrollToSection(`#${link.id}`)}
-                className={`rounded-full px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] transition-colors duration-300 md:px-4 md:text-[13px] ${
+                className={`rounded-full px-3 py-1.5 font-mono text-[14px] uppercase tracking-[0.18em] transition-colors duration-300 md:px-4 md:text-[16px] ${
                   active === link.id
                     ? "text-horizon"
                     : "text-muted hover:text-ink"

@@ -5,7 +5,7 @@ import { gsap, ScrollTrigger } from "@/lib/gsap";
 import IdBadge from "@/components/IdBadge";
 import ScrambleLabel from "@/components/ScrambleLabel";
 import StrawHat, { ScarMark } from "@/components/StrawHat";
-import { about } from "@/lib/content";
+import { about, site } from "@/lib/content";
 
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -136,23 +136,20 @@ export default function About() {
               <ScarMark className="absolute left-[62%] top-[52%] w-[0.37em] -translate-x-1/2 -translate-y-1/2 rotate-[-3deg]" />
             </span>
           </h2>
-          <p className="about-reveal mt-8 max-w-2xl text-base leading-relaxed text-muted md:text-lg">
-            {about.paragraphs[0]}
-          </p>
-          <div className="about-reveal mt-8 space-y-2 text-base md:text-lg">
-            <p>
-              <span className="mr-3 font-mono text-xs uppercase tracking-[0.25em] text-horizon">
-                Next
-              </span>
-              <span className="text-ink/90">
-                research engineering at a frontier lab.
-              </span>
-            </p>
-            <p>
-              <span className="mr-3 font-mono text-xs uppercase tracking-[0.25em] text-horizon">
-                Eventually
-              </span>
-              <span className="text-ink/90">founding what comes after.</span>
+          <div className="mt-8 max-w-2xl space-y-4 text-base leading-relaxed text-ink/90 md:text-lg">
+            {about.paragraphs.map((p, i) => (
+              <p key={i} className="about-reveal">
+                {p}
+              </p>
+            ))}
+            <p className="about-reveal">
+              {about.connectLead}{" "}
+              <a
+                href={`mailto:${site.email}`}
+                className="text-horizon underline decoration-horizon/30 underline-offset-4 transition-colors hover:decoration-horizon"
+              >
+                {site.email}
+              </a>
             </p>
           </div>
         </div>

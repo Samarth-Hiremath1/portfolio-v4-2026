@@ -10,7 +10,7 @@ export const site = {
   role: "AI/ML Engineer",
   heroCenterLabel: "NOW_BUILDING_GOODHART",
   heroTagline: "（ CODE · PRODUCT · VISION ）",
-  email: "samhiremath1@gmail.com",
+  email: "samarthh@usc.edu",
   socials: [
     { label: "GitHub", href: "https://github.com/Samarth-Hiremath1" },
     { label: "LinkedIn", href: "https://linkedin.com/in/samarth-hiremath" }, // [PLACEHOLDER — confirm handle]
@@ -27,8 +27,13 @@ export const quote = {
 export const about = {
   heading: "About",
   paragraphs: [
-    "I take ideas from 0 → 1. Incoming MSCS at USC (Fall 2026 — Dec 2027), B.S. in Computer Science & Statistics from UC Davis — obsessed with building AI products that actually make a difference, from the CUDA kernel to the go-to-market.",
+    "Hey, I'm Samarth. I'm an engineer passionate about building reliable AI systems and products that solve real problems.",
+    "I love taking ideas from 0 → 1. My background spans research, software engineering, product management, and consulting, giving me the perspective to bridge technical depth with product thinking.",
+    "I'm driven by curiosity, creativity, and the desire to build things that matter. I'm especially excited by the intersection of AI research and engineering, where I can turn cutting-edge ideas into systems that people can actually use.",
+    "In my free time, I enjoy exploring places (both man-made and in nature), listening to music, eating good food, and playing the guitar.",
   ],
+  connectLead:
+    "If you're building something ambitious or want to exchange ideas, I'd love to connect:",
   badge: {
     idLabel: "ACCESS // SH-2026",
     line1: "Samarth Hiremath",
@@ -48,9 +53,9 @@ export const experience: Waypoint[] = [
   {
     company: "VIDI Lab · UC Davis",
     role: "Machine Learning Research Intern",
-    dates: "DEC_2025 — PRESENT",
+    dates: "",
     description:
-      "Extending transformer seq2seq models for large-scale sequence alignment with distributed PyTorch — targeting a top-venue submission.",
+      "Extending transformer seq2seq models for large-scale sequence alignment with PyTorch.",
   },
   {
     company: "Boston Consulting Group",
@@ -67,13 +72,6 @@ export const experience: Waypoint[] = [
       "Scaled a student rideshare platform to 1,500+ weekly actives with a 9-person team — 99.9% uptime.",
   },
   {
-    company: "Spin",
-    role: "Strategy & Data Consultant Intern",
-    dates: "APR_2025 — JUN_2025",
-    description:
-      "Analyzed 20K+ rides to sharpen pricing and city-compliance strategy.",
-  },
-  {
     company: "Snap Inc.",
     role: "Software Engineering Intern",
     dates: "MAR_2025 — JUN_2025",
@@ -81,18 +79,18 @@ export const experience: Waypoint[] = [
       "Shipped real-time computer-vision AR filters — 20K+ views in two weeks, +40% engagement.",
   },
   {
+    company: "Spin",
+    role: "Strategy & Data Consultant Intern",
+    dates: "APR_2025 — JUN_2025",
+    description:
+      "Analyzed 20K+ rides to sharpen pricing and city-compliance strategy.",
+  },
+  {
     company: "Tagkopoulos Lab · UC Davis",
     role: "Machine Learning Researcher",
     dates: "NOV_2024 — APR_2025",
     description:
       "Automated biomedical ontology mapping — 150K+ disease-drug entities curated for NLP fine-tuning.",
-  },
-  {
-    company: "Liner AI",
-    role: "AI Product Consultant Intern",
-    dates: "OCT_2024 — DEC_2024",
-    description:
-      "Product strategy and UX for an AI-powered study platform.",
   },
 ];
 
@@ -113,7 +111,7 @@ export const featuredProjects: Project[] = [
     slug: "distributed-transformer-lab",
     name: "Distributed Transformer Lab",
     description:
-      "GPT-2 built from scratch with a custom fused-softmax CUDA kernel, 78% DDP scaling efficiency across 4 processes, and 6× faster inference at 2048 tokens via KV caching + INT8 quantization.",
+      "GPT-2 built from scratch with a custom fused-softmax CUDA kernel, 78% DDP scaling efficiency across 4 processes, and 6× faster inference at 2048 tokens via KV caching + INT8 quantization. Benchmarked on consumer hardware.",
     tags: ["PyTorch", "CUDA", "JAX / XLA", "DDP", "FastAPI"],
     image: "/projects/transformer-lab.svg", // carousel fallback
     images: [
@@ -127,7 +125,7 @@ export const featuredProjects: Project[] = [
     slug: "living-memory",
     name: "Living Memory",
     description:
-      "Five Claude agents in parallel fan-out/fan-in orchestration (LangGraph + MCP), with an LLM-as-judge eval harness that catches the silent failures pass/fail tests miss. Built at Cerebral Valley × Sandhill for Rosewood Hotels.",
+      "Five Claude agents in parallel fan-out/fan-in orchestration (LangGraph + MCP), with an LLM-as-judge eval harness that catches the silent failures pass/fail tests miss. Built at the Anthropic × ElevenLabs × Cerebral Valley hackathon. Experimented with voice agents too!",
     tags: ["Claude", "LangGraph", "MCP", "Evals"],
     image: "/projects/living-memory.svg", // carousel fallback
     images: [
@@ -155,8 +153,8 @@ export const featuredProjects: Project[] = [
     slug: "vq",
     name: "VQ — AI Speech & Body Language Coach",
     description:
-      "Multimodal ML pipeline (PyTorch, TensorFlow, MediaPipe) that analyzes speech and body language for clarity, confidence, and posture — on a Dockerized, Airflow-orchestrated stack with automated retraining.",
-    tags: ["PyTorch", "TensorFlow", "MediaPipe", "Airflow"],
+      "Multimodal ML pipeline (PyTorch, MediaPipe) that analyzes speech and body language for clarity, confidence, and posture — on a Dockerized, Airflow-orchestrated stack with automated retraining.",
+    tags: ["PyTorch", "MediaPipe", "Airflow"],
     image: "/projects/vq-1.jpg",
     // github: "[PLACEHOLDER — repo URL]",
   },
@@ -215,10 +213,10 @@ export type LeadershipCard = {
 export const leadership: LeadershipCard[] = [
   {
     org: "AggieWorks / Moober",
-    role: "Engineering Lead & Product Manager",
+    role: "Product Manager",
     dates: "2025 — PRESENT",
     description:
-      "Leading a 9-person engineering, design, and marketing team building a student rideshare platform — turning product requirements into technical specs and shipping weekly.",
+      "Led a 9-person engineering, design, and marketing team building a student rideshare platform — turning product requirements into technical specs and shipping weekly.",
     image: "/leadership/aggieworks.JPG",
     beltImage: ["/leadership/aggieworks-belt1.jpg", "/leadership/aggieworks-belt2.JPG"],
     stats: [

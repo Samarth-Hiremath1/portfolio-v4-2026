@@ -87,7 +87,7 @@ function Carousel({
         {">"}
       </button>
 
-      <span className="absolute bottom-3 right-4 rounded-full bg-void/70 px-3 py-1 font-mono text-[11px] tracking-[0.25em] text-ink/80 backdrop-blur-sm">
+      <span className="absolute bottom-3 right-4 rounded-full bg-void/70 px-3 py-1 font-mono text-[14px] tracking-[0.25em] text-ink/80 backdrop-blur-sm">
         {index + 1}_/_{count}
       </span>
     </div>
@@ -199,7 +199,7 @@ export default function Projects() {
               <p className="mt-8 max-w-sm text-sm leading-relaxed text-muted">
                 Four systems, built end to end — kernel to cluster to product.
               </p>
-              <p className="mt-10 hidden font-mono text-[11px] uppercase tracking-[0.32em] text-horizon/70 lg:block">
+              <p className="mt-10 hidden font-mono text-[14px] uppercase tracking-[0.32em] text-horizon/70 lg:block">
                 （ SCROLL → ）
               </p>
             </div>
@@ -212,21 +212,20 @@ export default function Projects() {
             >
               <div className="grid w-full items-center gap-10 lg:grid-cols-2 lg:gap-16">
                 <div>
-                  <p className="font-mono text-[12px] tracking-[0.3em] text-horizon/80">
-                    {String(i + 1).padStart(2, "0")}_
-                    {String(featuredProjects.length).padStart(2, "0")}
+                  <p className="font-mono text-[15px] tracking-[0.3em] text-horizon/80">
+                    {String(i + 1).padStart(2, "0")} / {String(featuredProjects.length).padStart(2, "0")}
                   </p>
                   <h3 className="mt-5 text-2xl font-semibold leading-tight md:text-4xl">
                     {project.name}
                   </h3>
-                  <p className="mt-5 max-w-lg text-sm leading-relaxed text-muted md:text-base">
+                  <p className="mt-5 max-w-lg text-sm leading-relaxed text-ink/90 md:text-base">
                     {project.description}
                   </p>
                   <div className="mt-6 flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="rounded-full border border-white/10 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.12em] text-muted"
+                        className="rounded-full border border-white/10 px-3 py-1 font-mono text-[14px] uppercase tracking-[0.12em] text-muted"
                       >
                         {tag}
                       </span>
@@ -280,12 +279,12 @@ export default function Projects() {
                       {project.name}
                     </h3>
                     {project.status && (
-                      <span className="whitespace-nowrap rounded-full border border-horizon/40 px-3 py-0.5 font-mono text-[11px] uppercase tracking-[0.2em] text-horizon">
+                      <span className="whitespace-nowrap rounded-full border border-horizon/40 px-3 py-0.5 font-mono text-[14px] uppercase tracking-[0.2em] text-horizon">
                         {project.status}
                       </span>
                     )}
                   </div>
-                  <p className="text-[15px] leading-relaxed text-muted md:ml-auto md:max-w-[360px] md:text-right">
+                  <p className="text-[15px] leading-relaxed text-ink/90 md:ml-auto md:max-w-[360px] md:text-right">
                     {project.description}
                   </p>
                   <span

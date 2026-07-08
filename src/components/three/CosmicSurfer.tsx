@@ -7,10 +7,11 @@ import * as THREE from "three";
 import ExposeState from "./ExposeState";
 
 /**
- * The Surfer. A chrome rider on a chrome board, carving across the page
- * as you scroll — banking into turns, trailing an ember wake, reflecting
- * the disk's fire off every surface. The whole figure is re-materialed
- * to liquid chrome so it reads as sculpture, not action figure.
+ * The Surfer. A chrome rider (board included in the model) carving
+ * across the page as you scroll — banking into turns, trailing an
+ * ember wake off the tail of his board, reflecting the disk's fire
+ * off every surface. The whole figure is re-materialed to liquid
+ * chrome so it reads as sculpture, not action figure.
  *
  * Flight plan (kept simple and consistent):
  *  1. waits at the hero's bottom-right corner; slides in the moment you scroll
@@ -91,13 +92,14 @@ function Rider() {
     return scene;
   }, [scene]);
 
-  // stands on the board's top surface; the facing group handles direction
-  return <primitive object={figure} position={[0, 0.4, 0]} />;
+  // the model brings its own board — no artificial lift needed;
+  // the facing group handles direction
+  return <primitive object={figure} position={[0, 0, 0]} />;
 }
 
 function SurferRig({ progress }: { progress: React.RefObject<number> }) {
   const rig = useRef<THREE.Group>(null);
-  const board = useRef<THREE.Group>(null);
+  const carve = useRef<THREE.Group>(null);
   const facing = useRef<THREE.Group>(null);
   const wake = useRef<THREE.Points>(null);
   const prev = useRef({ x: -10, y: 0 });
@@ -113,7 +115,7 @@ function SurferRig({ progress }: { progress: React.RefObject<number> }) {
   );
 
   useFrame((state, delta) => {
-    if (!rig.current || !board.current) return;
+    if (!rig.current || !carve.current) return;
     const dt = Math.min(delta, 0.05);
     const t = state.clock.elapsedTime;
 
@@ -138,10 +140,10 @@ function SurferRig({ progress }: { progress: React.RefObject<number> }) {
     // carve: roll into horizontal motion, pitch into vertical
     const bank = THREE.MathUtils.clamp(-vx * 6, -0.5, 0.5);
     const pitch = THREE.MathUtils.clamp(vy * 4, -0.3, 0.3);
-    board.current.rotation.z +=
-      (bank + Math.sin(t * 0.7) * 0.04 - board.current.rotation.z) * 0.08;
-    board.current.rotation.x += (pitch - board.current.rotation.x) * 0.08;
-    board.current.rotation.y = 0.3 + Math.sin(t * 0.4) * 0.1;
+    carve.current.rotation.z +=
+      (bank + Math.sin(t * 0.7) * 0.04 - carve.current.rotation.z) * 0.08;
+    carve.current.rotation.x += (pitch - carve.current.rotation.x) * 0.08;
+    carve.current.rotation.y = 0.3 + Math.sin(t * 0.4) * 0.1;
 
     // face the direction of travel — eases through the turn
     if (Math.abs(vx) > 0.002) dir.current = vx > 0 ? 1 : -1;
@@ -150,12 +152,12 @@ function SurferRig({ progress }: { progress: React.RefObject<number> }) {
         (dir.current * (Math.PI / 2) - facing.current.rotation.y) * 0.09;
     }
 
-    // ember wake behind the tail while moving
+    // ember wake — emitted from the tail of his own board, at foot level
     const speed = Math.hypot(vx, vy);
     if (rig.current.visible && speed > 0.003) {
       const i = wakeIdx.current;
-      wakePositions[i * 3] = wx - Math.sign(vx || 1) * 0.18;
-      wakePositions[i * 3 + 1] = wy - 0.02;
+      wakePositions[i * 3] = wx - Math.sign(vx || 1) * 0.14;
+      wakePositions[i * 3 + 1] = wy - 0.05;
       wakePositions[i * 3 + 2] = -0.2;
       wakeLife[i] = 1;
       wakeIdx.current = (i + 1) % WAKE_COUNT;
@@ -174,15 +176,10 @@ function SurferRig({ progress }: { progress: React.RefObject<number> }) {
   return (
     <>
       <group ref={rig} visible={false}>
-        <group ref={board}>
+        <group ref={carve}>
           <group scale={RIG_SCALE}>
-            {/* the board: thin chrome plank */}
-            <mesh rotation={[0, 0, Math.PI / 2]} scale={[0.4, 1, 0.9]}>
-              <capsuleGeometry args={[0.42, 2.4, 8, 24]} />
-              <primitive object={chrome} attach="material" />
-            </mesh>
-            {/* the rider — flips to face the direction of travel;
-                board still flies while the model streams in */}
+            {/* the rider — brings his own board; flips to face the
+                direction of travel while the model streams in */}
             <group ref={facing} rotation={[0, Math.PI / 2, 0]}>
               <Suspense fallback={null}>
                 <Rider />

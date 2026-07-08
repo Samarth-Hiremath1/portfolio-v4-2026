@@ -105,14 +105,16 @@ export default function Experience() {
                       <h3 className="text-xl font-semibold md:text-2xl">
                         {job.company}
                       </h3>
-                      <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-horizon/90">
-                        {job.dates}
-                      </span>
+                      {job.dates && (
+                        <span className="font-mono text-[14px] uppercase tracking-[0.22em] text-horizon/90">
+                          {job.dates}
+                        </span>
+                      )}
                     </div>
                     <p className="mt-1.5 text-sm font-medium text-ink/80 md:text-base">
                       {job.role}
                     </p>
-                    <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted md:text-[15px]">
+                    <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink/90 md:text-[15px]">
                       {job.description}
                     </p>
                   </GlowCard>

@@ -72,9 +72,9 @@ body {
 /* Mono metadata layer — labels, coordinates, tags */
 .mono-label {
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 16px;
   text-transform: uppercase;
-  letter-spacing: 0.26em;
+  letter-spacing: 0.24em;
   color: var(--color-muted);
 }
 
