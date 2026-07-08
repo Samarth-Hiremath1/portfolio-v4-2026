@@ -117,9 +117,9 @@ export const featuredProjects: Project[] = [
     tags: ["PyTorch", "CUDA", "JAX / XLA", "DDP", "FastAPI"],
     image: "/projects/transformer-lab.svg", // carousel fallback
     images: [
-      "/projects/transformer-lab-1.png",
-      "/projects/transformer-lab-2.png",
-      "/projects/transformer-lab-3.png",
+      "/projects/fused_softmax_diagram.png",
+      "/projects/ddp_scaling.png",
+      "/projects/inference_latency_comparison.png",
     ],
     github: "https://github.com/Samarth-Hiremath1/Distributed-Transformer-Lab",
   },
@@ -131,8 +131,9 @@ export const featuredProjects: Project[] = [
     tags: ["Claude", "LangGraph", "MCP", "Evals"],
     image: "/projects/living-memory.svg", // carousel fallback
     images: [
-      "/projects/living-memory-1.png",
-      "/projects/living-memory-2.png",
+      "/projects/living-memory-landing.png",
+      "/projects/eval_rubric_scores.png",
+      "/projects/living-memory-voice-welcome.png",
     ],
     github: "https://github.com/Samarth-Hiremath1/Living-Memory",
   },
@@ -144,7 +145,7 @@ export const featuredProjects: Project[] = [
     tags: ["LangGraph", "RAG", "Kubernetes", "PostgreSQL"],
     image: "/projects/trajectory.svg", // collage fallback
     images: [
-      "/projects/trajectory-1.png",
+      "/projects/trajectory-1.jpg",
       "/projects/trajectory-2.png",
       "/projects/trajectory-3.png",
     ],
@@ -156,7 +157,7 @@ export const featuredProjects: Project[] = [
     description:
       "Multimodal ML pipeline (PyTorch, TensorFlow, MediaPipe) that analyzes speech and body language for clarity, confidence, and posture — on a Dockerized, Airflow-orchestrated stack with automated retraining.",
     tags: ["PyTorch", "TensorFlow", "MediaPipe", "Airflow"],
-    image: "/projects/vq.png",
+    image: "/projects/vq-1.jpg",
     // github: "[PLACEHOLDER — repo URL]",
   },
   {
@@ -165,7 +166,7 @@ export const featuredProjects: Project[] = [
     description:
       "A Q-learning agent that masters blackjack strategy through simulation and reward-based training — applied RL meets game theory. Built for the Google Developer Student Club at UC Davis.",
     tags: ["Python", "Q-Learning", "Reinforcement Learning", "Probability"],
-    image: "/projects/blackjack.png",
+    image: "/projects/blackjack-1.jpg",
     github: "https://github.com/hanyiliu/SamarthBlackjackBot",
     demo: "https://docs.google.com/presentation/d/1GdYHb8CVW-bAWbQH8Qt3tYmktVt_v_BQjTn2lCsTA6Y/edit?usp=sharing",
   },
@@ -207,7 +208,7 @@ export type LeadershipCard = {
   dates: string;
   description: string;
   image: string; // the big photo in the description row — swap in /public/leadership
-  beltImage?: string; // separate image for the motion belt (falls back to `image`)
+  beltImage?: string | string[]; // separate image(s) for the motion belt (falls back to `image`)
   stats: { value: string; label: string }[];
 };
 
@@ -218,8 +219,8 @@ export const leadership: LeadershipCard[] = [
     dates: "2025 — PRESENT",
     description:
       "Leading a 9-person engineering, design, and marketing team building a student rideshare platform — turning product requirements into technical specs and shipping weekly.",
-    image: "/leadership/aggieworks.png",
-    beltImage: "/leadership/aggieworks-belt.svg",
+    image: "/leadership/aggieworks.JPG",
+    beltImage: ["/leadership/aggieworks-belt1.jpg", "/leadership/aggieworks-belt2.JPG"],
     stats: [
       { value: "1,500+", label: "WEEKLY_ACTIVES" },
       { value: "257%", label: "DAU_GROWTH" },
@@ -232,8 +233,8 @@ export const leadership: LeadershipCard[] = [
     dates: "2022 — 2023",
     description:
       "Organized statewide events for 54,000 members — including a 3,500-person State Leadership & Skills Conference — advocated for career education in Washington D.C., and initiated the President's Council to connect schools across the state.",
-    image: "/leadership/skillsusa.png",
-    beltImage: "/leadership/skillsusa-belt.svg",
+    image: "/leadership/SkillsUSA-speech.gif",
+    beltImage: "/leadership/skillsusa-belt.JPG",
     stats: [
       { value: "54,000", label: "MEMBERS_SERVED" },
       { value: "3,500", label: "CONF_ATTENDEES" },
@@ -246,8 +247,8 @@ export const leadership: LeadershipCard[] = [
     dates: "2020 — 2022",
     description:
       "Founded a summer programming bootcamp with the local library and taught middle schoolers to code across three summers — the first thing I ever took from zero to one.",
-    image: "/leadership/bootcamp.png",
-    beltImage: "/leadership/bootcamp-belt.svg",
+    image: "/leadership/summer-python-bootcamp.jpg",
+    // no separate belt shot supplied — belt falls back to the main photo above
     stats: [
       { value: "120+", label: "STUDENTS_TAUGHT" },
       { value: "3", label: "SUMMERS" },

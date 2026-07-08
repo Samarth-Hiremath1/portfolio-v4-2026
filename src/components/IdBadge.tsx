@@ -6,8 +6,8 @@ import { about } from "@/lib/content";
 
 /**
  * The face card — just the portrait in a glowing frame.
- * Drop your headshot at /public/portrait.png; until then it falls
- * back to the placeholder. Used small in the hero, full-size in About.
+ * Reads /public/profile.jpg; falls back to the placeholder if it's
+ * missing. Used small in the hero, full-size in About.
  */
 export default function IdBadge({ className = "" }: { className?: string }) {
   const imgRef = useRef<HTMLImageElement>(null);
@@ -33,7 +33,7 @@ export default function IdBadge({ className = "" }: { className?: string }) {
 
       <img
         ref={imgRef}
-        src="/portrait.png"
+        src="/profile.jpg"
         alt={about.badge.photoAlt}
         className="h-full w-full object-cover"
         onError={(e) => {

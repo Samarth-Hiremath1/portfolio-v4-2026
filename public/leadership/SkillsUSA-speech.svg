@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#180d05"/>
+      <stop offset="0.55" stop-color="#0a0807"/>
+      <stop offset="1" stop-color="#2a1204"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.3" cy="0.35" r="0.55">
+      <stop offset="0" stop-color="#ff8e3c" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#ff8e3c" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="750" fill="url(#g)"/>
+  <rect width="1200" height="750" fill="url(#glow)"/>
+  <text x="80" y="360" fill="#f5f2ec" fill-opacity="0.85" font-family="monospace" font-size="46" letter-spacing="8">SKILLSUSA_CALIFORNIA</text>
+  <text x="80" y="420" fill="#8f8a80" font-family="monospace" font-size="24">PLACEHOLDER — replace with a real photo</text>
+  <text x="80" y="460" fill="#57534a" font-family="monospace" font-size="20">/public/leadership/skillsusa.svg</text>
+</svg>

@@ -115,7 +115,11 @@ export default function Leadership() {
       >
         {mounted && (
           <LeadershipBelt
-            images={leadership.map((l) => l.beltImage ?? l.image)}
+            images={leadership.flatMap((l) =>
+              Array.isArray(l.beltImage)
+                ? l.beltImage
+                : [l.beltImage ?? l.image]
+            )}
             progress={progress}
             pointer={pointer}
             reduced={reduced}
@@ -140,11 +144,11 @@ export default function Leadership() {
                   className="aspect-[16/10] w-full object-cover"
                   loading="lazy"
                   onError={(e) => {
-                    // real photos may be .png/.jpg/.jpeg/.webp; fall back to the .svg placeholder
+                    // real photos may be .png/.jpg/.jpeg/.webp/.gif; fall back to the .svg placeholder
                     const img = e.currentTarget;
                     if (img.dataset.fb) return;
                     img.dataset.fb = "1";
-                    img.src = item.image.replace(/\.(png|jpe?g|webp)$/i, ".svg");
+                    img.src = item.image.replace(/\.(png|jpe?g|webp|gif)$/i, ".svg");
                   }}
                 />
               </GlowCard>
