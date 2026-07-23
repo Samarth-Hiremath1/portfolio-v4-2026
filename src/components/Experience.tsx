@@ -1,5 +1,6 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useRef } from "react";
 import { gsap, ScrollTrigger } from "@/lib/gsap";
 import GlowCard from "@/components/GlowCard";
@@ -101,10 +102,22 @@ export default function Experience() {
                 <span className="waypoint-node absolute left-[5px] top-9 h-[11px] w-[11px] -translate-x-1/2 rounded-full md:left-[7px]" />
                 <div className="waypoint-card">
                   <GlowCard className="p-6 md:p-8">
-                    <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-                      <h3 className="text-xl font-semibold md:text-2xl">
-                        {job.company}
-                      </h3>
+                    <div className="flex flex-col gap-2 md:flex-row md:flex-wrap md:items-center md:justify-between md:gap-x-6 md:gap-y-2">
+                      <div className="flex items-center gap-3">
+                        {job.logo && (
+                          <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-white p-1 shadow-sm md:h-10 md:w-10">
+                            <img
+                              src={job.logo}
+                              alt={`${job.company} logo`}
+                              className="h-full w-full object-contain"
+                              loading="lazy"
+                            />
+                          </span>
+                        )}
+                        <h3 className="text-xl font-semibold md:text-2xl">
+                          {job.company}
+                        </h3>
+                      </div>
                       {job.dates && (
                         <span className="font-mono text-[14px] uppercase tracking-[0.22em] text-horizon/90">
                           {job.dates}

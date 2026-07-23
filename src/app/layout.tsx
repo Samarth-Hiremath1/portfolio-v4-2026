@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -38,7 +39,12 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-void text-ink font-sans antialiased">{children}</body>
+      <body className="bg-void text-ink font-sans antialiased">
+        {children}
+        {/* Cookieless visitor analytics — dashboard lives in the Vercel
+            project once this is deployed to Vercel. No-op in local dev. */}
+        <Analytics />
+      </body>
     </html>
   );
 }

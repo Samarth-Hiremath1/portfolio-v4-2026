@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#180d05"/>
+      <stop offset="0.55" stop-color="#0a0807"/>
+      <stop offset="1" stop-color="#241206"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#g)"/>
+  <g stroke="#e8a54a" stroke-width="2.5" fill="none" opacity="0.55">
+    <circle cx="360" cy="360" r="46" fill="#e8a54a" fill-opacity="0.12"/>
+    <circle cx="640" cy="250" r="46" fill="#e8a54a" fill-opacity="0.12"/>
+    <circle cx="840" cy="470" r="46" fill="#e8a54a" fill-opacity="0.12"/>
+    <circle cx="540" cy="560" r="46" fill="#e8a54a" fill-opacity="0.12"/>
+    <line x1="360" y1="360" x2="640" y2="250"/>
+    <line x1="640" y1="250" x2="840" y2="470"/>
+    <line x1="360" y1="360" x2="540" y2="560"/>
+    <line x1="540" y1="560" x2="840" y2="470"/>
+    <line x1="640" y1="250" x2="540" y2="560" stroke-dasharray="6 8" opacity="0.4"/>
+  </g>
+  <text x="80" y="760" font-family="ui-monospace, monospace" font-size="34" fill="#e8a54a" opacity="0.85">Grapevine</text>
+  <text x="80" y="806" font-family="ui-monospace, monospace" font-size="20" fill="#8a7a68" opacity="0.7">multi-agent hidden-profile research toolkit</text>
+</svg>

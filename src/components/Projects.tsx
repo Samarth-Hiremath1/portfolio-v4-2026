@@ -88,7 +88,7 @@ function Carousel({
       </button>
 
       <span className="absolute bottom-3 right-4 rounded-full bg-void/70 px-3 py-1 font-mono text-[14px] tracking-[0.25em] text-ink/80 backdrop-blur-sm">
-        {index + 1}_/_{count}
+        {index + 1} / {count}
       </span>
     </div>
   );
@@ -195,9 +195,9 @@ export default function Projects() {
           {/* intro panel — rides inside the horizontal scroll, trionn-style */}
           <div className="proj-panel flex items-center lg:h-screen lg:w-[42vw] lg:shrink-0 lg:pl-[4vw] lg:pr-[6vw]">
             <div className="w-full">
-              <SectionHeader eyebrow="SELECTED_WORK" title="Systems that ship" />
+              <SectionHeader eyebrow="SELECTED_WORK" title="Projects" />
               <p className="mt-8 max-w-sm text-sm leading-relaxed text-muted">
-                Four systems, built end to end — kernel to cluster to product.
+                Check out a few projects I&apos;ve worked on! These are systems that ship, built end to end.
               </p>
               <p className="mt-10 hidden font-mono text-[14px] uppercase tracking-[0.32em] text-horizon/70 lg:block">
                 （ SCROLL → ）

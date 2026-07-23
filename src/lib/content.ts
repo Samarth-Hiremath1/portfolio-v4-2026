@@ -8,7 +8,7 @@ export const site = {
   firstName: "Samarth",
   lastName: "Hiremath",
   role: "AI/ML Engineer",
-  heroCenterLabel: "NOW_BUILDING_GOODHART",
+  heroCenterLabel: "NOW_BUILDING_GRAPEVINE",
   heroTagline: "（ CODE · PRODUCT · VISION ）",
   email: "samarthh@usc.edu",
   socials: [
@@ -47,15 +47,24 @@ export type Waypoint = {
   role: string;
   dates: string;
   description: string;
+  logo?: string; // path in /public/logos — omitted for entries without a logo
 };
 
 export const experience: Waypoint[] = [
+  {
+    company: "Grapevine",
+    role: "Creator · Open-Source AI Research",
+    dates: "",
+    description:
+      "Building an open-source research toolkit for multi-agent LLM systems — procedural RL environments, a GRPO training pipeline, and a live leaderboard studying whether agents can learn to surface hidden information.",
+  },
   {
     company: "VIDI Lab · UC Davis",
     role: "Machine Learning Research Intern",
     dates: "",
     description:
       "Extending transformer seq2seq models for large-scale sequence alignment with PyTorch.",
+    logo: "/logos/davis-labs.png",
   },
   {
     company: "Boston Consulting Group",
@@ -63,6 +72,7 @@ export const experience: Waypoint[] = [
     dates: "JUN_2025 — AUG_2025",
     description:
       "Turned market and user research into a go-to-market roadmap for a Web3 client.",
+    logo: "/logos/bcg.png",
   },
   {
     company: "AggieWorks / Moober",
@@ -70,6 +80,7 @@ export const experience: Waypoint[] = [
     dates: "APR_2025 — PRESENT",
     description:
       "Scaled a student rideshare platform to 1,500+ weekly actives with a 9-person team — 99.9% uptime.",
+    logo: "/logos/aggieworks.png",
   },
   {
     company: "Snap Inc.",
@@ -77,6 +88,7 @@ export const experience: Waypoint[] = [
     dates: "MAR_2025 — JUN_2025",
     description:
       "Shipped real-time computer-vision AR filters — 20K+ views in two weeks, +40% engagement.",
+    logo: "/logos/snap.png",
   },
   {
     company: "Spin",
@@ -84,6 +96,7 @@ export const experience: Waypoint[] = [
     dates: "APR_2025 — JUN_2025",
     description:
       "Analyzed 20K+ rides to sharpen pricing and city-compliance strategy.",
+    logo: "/logos/spin.png",
   },
   {
     company: "Tagkopoulos Lab · UC Davis",
@@ -91,6 +104,7 @@ export const experience: Waypoint[] = [
     dates: "NOV_2024 — APR_2025",
     description:
       "Automated biomedical ontology mapping — 150K+ disease-drug entities curated for NLP fine-tuning.",
+    logo: "/logos/davis-labs.png",
   },
 ];
 
@@ -172,12 +186,12 @@ export const featuredProjects: Project[] = [
 
 export const archiveProjects: Project[] = [
   {
-    slug: "goodhart",
-    name: "Goodhart",
+    slug: "grapevine",
+    name: "Grapevine",
     description:
-      "Reward-hack CI — attacks any grader with adversarial LLM probes and a small policy RL-trained against it (GRPO), surfacing exploits and a hackability score before you spend real compute.",
-    tags: ["RL", "GRPO", "Evals", "Reward Hacking"],
-    image: "/projects/goodhart.svg",
+      "Open-source toolkit for the multi-agent \"Hidden Profile\" failure — when information is split across a team, accuracy collapses to ~30% vs 81% for a single agent with the full picture. Procedural RL environments, a GRPO pipeline, reward-hacking diagnostics, and a live leaderboard ranking frontier models on collective reasoning.",
+    tags: ["Multi-Agent", "RL", "GRPO", "Research"],
+    image: "/projects/grapevine.svg",
     status: "In development",
   },
   {

@@ -231,22 +231,23 @@ body {
 }
 
 /* ---------- Guitar easter egg ---------- */
+/* small wiggle repeated across the ~3.2s riff so the icon plays along */
 @keyframes strum {
-  20% {
-    transform: rotate(-9deg);
+  25% {
+    transform: rotate(-8deg);
   }
-  45% {
-    transform: rotate(7deg);
+  55% {
+    transform: rotate(6deg);
   }
-  70% {
-    transform: rotate(-4deg);
+  80% {
+    transform: rotate(-3deg);
   }
   100% {
     transform: rotate(0deg);
   }
 }
 .strumming {
-  animation: strum 0.55s ease;
+  animation: strum 0.65s ease 5;
 }
 
 /* ---------- Marquee band ---------- */
